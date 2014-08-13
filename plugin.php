@@ -86,6 +86,21 @@ function wp_cat_game_filter_comments_array($comments){
     // add mac image, add random mac quote too
     // can override image avatar?
     if($done){
+      $quotes = array(
+        'Nice job rook.',
+        'You boys like Mex-i-co? Yee- Haww!.',
+        'Am I jumpin\' around all nimbly bimbly from tree to tree?',
+        '<strong>Awesome</strong> prank, ' . $c->comment_author . '.',
+        'But our shenanigans are cheeky and fun.',
+        'Three... two... one... DO EET. Oh go girlfriend.',
+        'Thanks, Chief!'
+      );
+
+      $i = array_rand($quotes); // get index of quote
+      $content = '<em>' . $c->comment_author . '</em> won the Cat Game.<br /><br />'
+        . '<img src="' . plugins_url('/assets/won.jpg', __FILE__) . '" alt="Mac" class="img-cat-game-won" /><br /><br />'
+        . $quotes[$i]; 
+
       $w = (object) array(
         'comment_ID' => 0,
         'comment_post_ID' => $c->comment_post_ID,
@@ -95,7 +110,7 @@ function wp_cat_game_filter_comments_array($comments){
         'comment_author_IP' => '', // make localhost?
         'comment_date' => $c->comment_date,
         'comment_date_gmt' => $c->comment_date_gmt,
-        'comment_content' => 'Mac says you won. nice job rook.',
+        'comment_content' => $content,
         'comment_karma' => 0,
         'comment_approved' => 1,
         'comment_agent' => 'Cat Game Plugin',
