@@ -27,6 +27,8 @@
  * WordPress-Plugin-Boilerplate: v2.6.1
  */
 
+//define('WP_DEBUG', true);
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
   die;
@@ -35,6 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
 // create options for winning threshold
 // xx -- allow admin edit
 add_option('wp-cat-game-threshold', 10);
+add_option('wp-cat-game-mac-email', 'MacIntyre.Womack@state.vt.us');
 
 // loop through comments, look for a user to say 'meow', mark each users meows
 // if a comment takes the meows at the winning threshold, post winning message 
@@ -86,13 +89,15 @@ function wp_cat_game_filter_comments_array($comments){
     // add mac image, add random mac quote too
     // can override image avatar?
     if($done){
+
+      // quotes to randomly add to end of winning post:
       $quotes = array(
         'Nice job rook.',
         'You boys like Mex-i-co? Yee- Haww!.',
         'Am I jumpin\' around all nimbly bimbly from tree to tree?',
         '<strong>Awesome</strong> prank, ' . $c->comment_author . '.',
         'But our shenanigans are cheeky and fun.',
-        'Three... two... one... DO EET. Oh go girlfriend.',
+        'Three... two... one... DO EET. Oh go ' . $c->comment_author . '.',
         'Thanks, Chief!'
       );
 
@@ -105,7 +110,7 @@ function wp_cat_game_filter_comments_array($comments){
         'comment_ID' => 0,
         'comment_post_ID' => $c->comment_post_ID,
         'comment_author' => 'Officer Womack',
-        'comment_author_email' => 'MacIntyre.Womack@state.vt.us',
+        'comment_author_email' => get_option('wp-cat-game-mac-email'),
         'comment_author_url' => '',
         'comment_author_IP' => '', // make localhost?
         'comment_date' => $c->comment_date,
@@ -132,4 +137,23 @@ function wp_cat_game_filter_comments_array($comments){
  * see: http://wordpress.org/plugins/right-meow/
  */
 add_filter('comments_array', 'wp_cat_game_filter_comments_array');
+
+
+/*
+ * filter the outgoing avatars, catch the winning notification comment and use custom 
+ * mac avatar.
+ */
+function wp_cat_game_filter_mac_avatar($avatar, $comment, $size, $default, $alt){
+
+  $returner = $avatar; // final avatar markup to return
+
+  // use winning comment email to find which is winning comment
+  $email = get_option('wp-cat-game-mac-email');  
+  if(is_object($comment) && ($comment->comment_author_email == $email)){
+    $returner = "<img alt='{$alt}' src='" . plugins_url('/assets/avatar.png', __FILE__) . "' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+  }
+  return $returner;
+}
+
+add_filter('get_avatar', 'wp_cat_game_filter_mac_avatar', 1, 5);
 ?>
