@@ -5,7 +5,7 @@
  * The Super Troopers "Cat Game" in WordPress comments. 
  * See: https://www.youtube.com/watch?v=mXPeLctgvQI
  * 
- * Users will be tallied in their comments on a post, the first commenter to reach 10 "meows" *properly* will get Mac's approval. 
+ * User's comments will be tracked for the word "meow" in their comments on a post, the first commenter to reach 10 "meows" will get Mac's approval. 
  * 
  *
  * @package   Cat Game
