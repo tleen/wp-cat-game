@@ -156,4 +156,4 @@ function wp_cat_game_filter_mac_avatar($avatar, $comment, $size, $default, $alt)
 }
 
 add_filter('get_avatar', 'wp_cat_game_filter_mac_avatar', 1, 5);
-?>
+
