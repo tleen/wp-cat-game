@@ -16,7 +16,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Cat Game
- * Plugin URI:        https://github.com/tleen/wp-right-meow
+ * Plugin URI:        https://github.com/tleen/wp-cat-game
  * Description:       Allow your commenters to play the Super Troopers Cat Game
  * Version:           1.0.0
  * Author:            tleen
