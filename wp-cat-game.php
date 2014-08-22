@@ -18,7 +18,7 @@
  * Plugin Name:       Cat Game
  * Plugin URI:        https://github.com/tleen/wp-cat-game
  * Description:       Allow your commenters to play the Super Troopers Cat Game.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            tleen
  * Author URI:        http://www.thomasleen.com
  * License:           GPL2

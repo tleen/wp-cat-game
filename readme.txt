@@ -3,7 +3,7 @@ Contributors: tleen
 Tags: comments, super troopers, game, meow, cat game
 Requires at least: 3.5.1
 Tested up to: 3.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 License URI: https://github.com/tleen/wp-cat-game/blob/master/LICENSE
 
